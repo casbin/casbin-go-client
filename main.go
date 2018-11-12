@@ -24,8 +24,7 @@ import (
 )
 
 const (
-	address     = "localhost:50051"
-	defaultName = "Casbin"
+	address = "localhost:50051"
 )
 
 func main() {
@@ -39,9 +38,9 @@ func main() {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := c.NewEnforcer(ctx, &pb.NewEnforcerRequest{"", 0})
+	r, err := c.NewEnforcer(ctx, &pb.NewEnforcerRequest{ModelText: "", AdapterHandle: -1})
 	if err != nil {
 		log.Fatalf("NewEnforcer() error: %v", err)
 	}
-	log.Printf("Enforer handle: %d", r.Handler)
+	log.Printf("Enforcer handle: %d", r.Handler)
 }
