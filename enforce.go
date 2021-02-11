@@ -22,16 +22,16 @@ type Enforcer struct {
 	ctx     context.Context
 }
 
-func (c *Client) NewEnforcer(ctx context.Context, config Config) (Enforcer, error) {
+func (c *Client) NewEnforcer(ctx context.Context, config Config) (*Enforcer, error) {
 	var adapterHandler int32 = -1
-	enforcer := Enforcer{client: c, ctx: ctx}
+	enforcer := &Enforcer{client: c, ctx: ctx}
 
 	// Maybe it not need NewAdapter
 	if config.DriverName != "" && config.ConnectString != "" {
 		adapterReply, err := c.remoteClient.NewAdapter(c.ctx, &pb.NewAdapterRequest{
 			DriverName:    config.DriverName,
 			ConnectString: config.ConnectString,
-			DbSpecified: config.DbSpecified,
+			DbSpecified:   config.DbSpecified,
 		})
 		if err != nil {
 			return enforcer, err
@@ -48,7 +48,7 @@ func (c *Client) NewEnforcer(ctx context.Context, config Config) (Enforcer, erro
 	return enforcer, nil
 }
 
-func (e *Enforcer) Enforcer(params ...interface{}) (bool, error) {
+func (e *Enforcer) Enforce(params ...interface{}) (bool, error) {
 	var data []string
 	for _, item := range params {
 		var value string
