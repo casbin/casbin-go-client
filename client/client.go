@@ -1,4 +1,6 @@
-package main
+// Package client implements a Go client for casbin-server, and contains an implementation
+// of an API similar to the casbin API.
+package client
 
 import (
 	"context"
