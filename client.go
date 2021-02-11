@@ -9,7 +9,6 @@ import (
 
 type Client struct {
 	remoteClient pb.CasbinClient
-	ctx          context.Context
 }
 
 func NewClient(ctx context.Context, address string, opts ...grpc.DialOption) (*Client, error) {
@@ -22,6 +21,5 @@ func NewClient(ctx context.Context, address string, opts ...grpc.DialOption) (*C
 
 	return &Client{
 		remoteClient: c,
-		ctx:          ctx,
 	}, nil
 }
