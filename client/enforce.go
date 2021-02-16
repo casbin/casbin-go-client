@@ -95,3 +95,15 @@ func (e *Enforcer) Enforce(ctx context.Context, params ...interface{}) (bool, er
 	})
 	return res.Res, err
 }
+
+// LoadPolicy reloads the policy from file/database.
+func (e *Enforcer) LoadPolicy(ctx context.Context) error {
+	_, err := e.client.remoteClient.LoadPolicy(ctx, &pb.EmptyRequest{Handler: e.handler})
+	return err
+}
+
+// SavePolicy saves the current policy (usually after changed with Casbin API) back to file/database.
+func (e *Enforcer) SavePolicy(ctx context.Context) error {
+	_, err := e.client.remoteClient.SavePolicy(ctx, &pb.EmptyRequest{Handler: e.handler})
+	return err
+}
