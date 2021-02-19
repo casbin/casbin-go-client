@@ -425,7 +425,7 @@ func (e *Enforcer) HasNamedGroupingPolicy(ctx context.Context, ptype string, par
 
 // paramsToStrSlice transforms params, which can either be one string slice or several seperate
 // strings, into a slice of strings.
-func paramsToStrSlice(params ...interface{}) []string {
+func paramsToStrSlice(params []interface{}) []string {
 	if slice, ok := params[0].([]string); len(params) == 1 && ok {
 		return slice
 	}
