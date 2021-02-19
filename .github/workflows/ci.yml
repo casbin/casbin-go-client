@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.15
+
+    - name: Set up Docker
+      uses: docker-practice/actions-setup-docker@master
+    
+    - name: Set up Server
+      run: |
+        set -x
+        docker version
+        docker run -d -p 50051:50051 casbin/casbin-server
+      
+    - name: Go Test
+      run: go test ./...
