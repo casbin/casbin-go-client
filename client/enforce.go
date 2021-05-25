@@ -93,6 +93,10 @@ func (e *Enforcer) Enforce(ctx context.Context, params ...interface{}) (bool, er
 		EnforcerHandler: e.handler,
 		Params:          data,
 	})
+	if err != nil {
+		return nil, fmt.Errorf("remote enforce error: %w", err)
+	}
+
 	return res.Res, err
 }
 
