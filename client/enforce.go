@@ -79,7 +79,7 @@ func (e *Enforcer) Enforce(ctx context.Context, params ...interface{}) (bool, er
 		var value string
 		var err error
 		if reflect.TypeOf(item).Kind() == reflect.Struct {
-			value, err = server.MakeABAC(data)
+			value, err = server.MakeABAC(item)
 			if err != nil {
 				return false, err
 			}
