@@ -27,3 +27,16 @@ jobs:
       
     - name: Go Test
       run: go test ./...
+
+  semantic-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run semantic-release
+        if: github.repository == 'casbin/casbin-go-client' && github.event_name == 'push'
+        run: |
+          export PATH="$(yarn global bin):$PATH"
+          yarn global add semantic-release
+          semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
