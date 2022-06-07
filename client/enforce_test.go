@@ -43,7 +43,7 @@ func testGetPolicy(t *testing.T, myRes, res [][]string) {
 func testAddPolicy(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	_, err := e.AddPolicy(ctx, "alice", "data1", "read" )
+	_, err := e.AddPolicy(ctx, "alice", "data1", "read")
 	if err != nil {
 		t.Fatalf("GetPolicy err: %v", err)
 	}
@@ -63,7 +63,7 @@ func testAddPolicy(t *testing.T) {
 func testRemovePolicy(t *testing.T) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	_,err := e.RemovePolicy(ctx,"alice","data1","read")
+	_, err := e.RemovePolicy(ctx, "alice", "data1", "read")
 	if err != nil {
 		t.Fatalf("Remove err: %v", err)
 	}
@@ -75,13 +75,30 @@ func testRemovePolicy(t *testing.T) {
 		t.Fatalf("GetPolicy err: %v", err)
 	}
 
-	testGetPolicy(t, policies, [][]string{
-	})
+	testGetPolicy(t, policies, [][]string{})
+}
+
+func testEnforce(t *testing.T) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	_, err := e.Enforce(ctx, "alice")
+	if err == nil {
+		t.Fatalf("Not found error: invalid request size")
+	}
+
+	res, err := e.Enforce(ctx, "alice", "data1", "read")
+	if err != nil {
+		t.Fatalf("Remove err: %v", err)
+	}
+	if !res {
+		t.Fatalf("Matched policies")
+	}
 }
 
 func TestEnforcer(t *testing.T) {
 	testNewEnforcer(t)
 
 	testAddPolicy(t)
+	testEnforce(t)
 	testRemovePolicy(t)
 }

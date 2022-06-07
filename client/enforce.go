@@ -93,6 +93,9 @@ func (e *Enforcer) Enforce(ctx context.Context, params ...interface{}) (bool, er
 		EnforcerHandler: e.handler,
 		Params:          data,
 	})
+	if err != nil {
+		return false, err
+	}
 	return res.Res, err
 }
 
