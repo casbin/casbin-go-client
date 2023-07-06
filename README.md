@@ -4,7 +4,7 @@ Go client for Casbin Server
 [![ci](https://img.shields.io/github/workflow/status/casbin/casbin-go-client/CI)](https://github.com/casbin/casbin-go-client/actions)
 [![Go Reference](https://pkg.go.dev/badge/github.com/casbin/casbin-go-client.svg)](https://pkg.go.dev/github.com/casbin/casbin-go-client)
 [![Release](https://img.shields.io/github/release/casbin/casbin-go-client.svg)](https://github.com/casbin/casbin-go-client/releases/latest)
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/casbin/lobby)
+[![Discord](https://img.shields.io/discord/1022748306096537660?logo=discord&label=discord&color=5865F2)](https://discord.gg/S5UjpzGZjN)
 [![Sourcegraph](https://sourcegraph.com/github.com/casbin/casbin-go-client/-/badge.svg)](https://sourcegraph.com/github.com/casbin/casbin-go-client?badge)
 
 ``casbin-go-client`` is Golang's client for [Casbin-Server](https://github.com/casbin/casbin-server). ``Casbin-Server`` is the ``Access Control as a Service (ACaaS)`` solution based on [Casbin](https://github.com/casbin/casbin).
