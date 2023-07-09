@@ -2,10 +2,11 @@ package client
 
 import (
 	"context"
-	"google.golang.org/grpc"
 	"log"
 	"testing"
 	"time"
+
+	"google.golang.org/grpc"
 
 	"github.com/casbin/casbin/v2/util"
 )
