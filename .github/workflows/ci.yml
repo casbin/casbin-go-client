@@ -25,8 +25,8 @@ jobs:
         docker version
         docker run -id -p 50051:50051 \
           -e CONNECTION_CONFIG_PATH=/config/connection_config.json \
-          -v config:/config \
-          -v examples:/data/examples \
+          -v $GITHUB_WORKSPACE/config:/config \
+          -v $GITHUB_WORKSPACE/examples:/data/examples \
           --name my-casbin-server-config \
           -d casbin/casbin-server
 
