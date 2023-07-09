@@ -2,16 +2,17 @@ package client
 
 import (
 	"context"
-	"google.golang.org/grpc"
 	"log"
 	"testing"
 	"time"
+
+	"google.golang.org/grpc"
 
 	"github.com/casbin/casbin/v2/util"
 )
 
 const (
-	address = "127.0.0.1:50051"
+	address = "localhost:50051"
 )
 
 var e *Enforcer

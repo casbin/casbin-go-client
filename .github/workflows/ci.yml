@@ -23,7 +23,13 @@ jobs:
       run: |
         set -x
         docker version
-        docker run -d -p 50051:50051 casbin/casbin-server
+        docker run -id
+            -p 50051:50051 
+            -e CONNECTION_CONFIG_PATH=/config/connection_config.json 
+            -v ./config:/config
+            -v ./examples:/data/examples
+            --name my-casbin-server-config 
+            -d casbin/casbin-server
       
     - name: Go Test
       run: go test ./...
