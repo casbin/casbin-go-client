@@ -25,10 +25,11 @@ import (
 
 // Config contains data needed to create an enforcer.
 type Config struct {
-	DriverName    string
-	ConnectString string
-	ModelText     string
-	DbSpecified   bool
+	DriverName              string
+	ConnectString           string
+	ModelText               string
+	DbSpecified             bool
+	EnableAcceptJsonRequest bool
 }
 
 // Enforcer is the main interface for authorization enforcement and policy management.
@@ -61,8 +62,9 @@ func (c *Client) NewEnforcer(ctx context.Context, config Config) (*Enforcer, err
 	}
 
 	e, err := c.remoteClient.NewEnforcer(ctx, &pb.NewEnforcerRequest{
-		ModelText:     config.ModelText,
-		AdapterHandle: adapterHandler,
+		ModelText:               config.ModelText,
+		AdapterHandle:           adapterHandler,
+		EnableAcceptJsonRequest: config.EnableAcceptJsonRequest,
 	})
 	if err != nil {
 		return enforcer, err
