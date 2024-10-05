@@ -7,7 +7,7 @@ on:
 jobs:
 
   test:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
 
@@ -34,14 +34,14 @@ jobs:
       run: go test ./...
 
   semantic-release:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
     
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20.8.1'
+          node-version: 20
     
       - name: Run semantic-release
         if: github.repository == 'casbin/casbin-go-client' && github.event_name == 'push'
