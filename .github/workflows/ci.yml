@@ -46,7 +46,8 @@ jobs:
       - name: Run semantic-release
         if: github.repository == 'casbin/casbin-go-client' && github.event_name == 'push'
         run: |
-          export PATH="$(yarn global bin):$PATH"
+          yarn -v
+          node -v
           yarn global add semantic-release
           semantic-release
         env:
